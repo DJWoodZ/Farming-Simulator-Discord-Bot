@@ -104,6 +104,7 @@ If you do not want the bot to purge its old messages, simply leave these values 
 
 * `FS22_BOT_DB_PATH` (Default: `./db.json`) - The path to the database JSON file (the file will be created if it doesn't exist)
 * `FS22_BOT_DISABLE_CERTIFICATE_VERIFICATION` (Default: `false`) - Whether to disable SSL certificate verification (for HTTPS XML URLs)
+* `FS22_BOT_DISABLE_SAVEGAME_MESSAGES` (Default: `false`) - Whether to disable "Savegame Money" and "Savegame Play Time" messages.
 * `FS22_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES` (Default: `false`) - Whether to disable "The server is unreachable." and "The server has been found." messages.
 * `FS22_BOT_DISCORD_CHANNEL_NAME` (Default: *blank*) - The Discord channel name to post in (leave blank for all channels the bot has access to)
 * `FS22_BOT_DISCORD_SERVER_NAME` (Default: *blank*) - The Discord server name to post in (leave blank for all servers the bot has access to)
