@@ -88,24 +88,26 @@ const getUpdateString = (
     string += modString;
   }
 
-  const { money, playTime } = newData.careerSavegame;
-  if (previousCareerSavegame.money !== money) {
-    let directionEmoji = '';
-    let moneyDifferenceSign = '';
-    const moneyDifferenceAbsolute = Math.abs(money - previousCareerSavegame.money);
-
-    if (money > previousCareerSavegame.money) {
-      directionEmoji = ':arrow_up_small:';
-      moneyDifferenceSign = '+';
+  if (process.env.FS22_BOT_DISABLE_SAVEGAME_MESSAGES !== 'true') {
+    const { money, playTime } = newData.careerSavegame;
+    if (previousCareerSavegame.money !== money) {
+      let directionEmoji = '';
+      let moneyDifferenceSign = '';
+      const moneyDifferenceAbsolute = Math.abs(money - previousCareerSavegame.money);
+  
+      if (money > previousCareerSavegame.money) {
+        directionEmoji = ':arrow_up_small:';
+        moneyDifferenceSign = '+';
+      }
+      if (money < previousCareerSavegame.money) {
+        directionEmoji = ':arrow_down_small:';
+        moneyDifferenceSign = '-';
+      }
+      string += `:moneybag: Savegame Money: ${directionEmoji} **${money.toLocaleString('en-GB')}** (${moneyDifferenceSign}${moneyDifferenceAbsolute.toLocaleString('en-GB')}).\n`;
     }
-    if (money < previousCareerSavegame.money) {
-      directionEmoji = ':arrow_down_small:';
-      moneyDifferenceSign = '-';
+    if (previousCareerSavegame.playTime !== playTime) {
+      string += `:watch: Savegame Play Time: **${formatMinutes(playTime)}**.\n`;
     }
-    string += `:moneybag: Savegame Money: ${directionEmoji} **${money.toLocaleString('en-GB')}** (${moneyDifferenceSign}${moneyDifferenceAbsolute.toLocaleString('en-GB')}).\n`;
-  }
-  if (previousCareerSavegame.playTime !== playTime) {
-    string += `:watch: Savegame Play Time: **${formatMinutes(playTime)}**.\n`;
   }
 
   const { numUsed, capacity, players } = newData.slots;
