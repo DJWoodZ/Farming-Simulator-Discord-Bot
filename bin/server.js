@@ -267,7 +267,7 @@ const update = () => {
 
 client.on('ready', () => {
   if (willPurge()) {
-    if (process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP) {
+    if (process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP === 'true') {
       attemptPurge();
     } else {
       nextPurge = getNextPurge();
