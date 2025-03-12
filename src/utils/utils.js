@@ -1,4 +1,4 @@
-if (process.env.FS22_BOT_DISABLE_CERTIFICATE_VERIFICATION === 'true') {
+if (process.env.FARMING_SIMULATOR_BOT_DISABLE_CERTIFICATE_VERIFICATION === 'true') {
   process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 }
 
@@ -6,8 +6,11 @@ const _ = require('lodash');
 const convert = require('xml-js');
 const fetch = require('fetch-retry')(global.fetch);
 
-const retries = Math.max(parseInt(process.env.FS22_BOT_FETCH_RETRIES, 10), 1) || 5;
-const retryDelay = Math.max(parseInt(process.env.FS22_BOT_FETCH_RETRY_DELAY_MS, 10), 1) || 2000;
+const retries = Math.max(parseInt(process.env.FARMING_SIMULATOR_BOT_FETCH_RETRIES, 10), 1) || 5;
+const retryDelay = Math.max(parseInt(
+  process.env.FARMING_SIMULATOR_BOT_FETCH_RETRY_DELAY_MS,
+  10,
+), 1) || 2000;
 
 const utils = {
   getDefaultDatabase: () => (_.cloneDeep({
@@ -55,13 +58,13 @@ const utils = {
   },
 
   getDataFromAPI: () => Promise.all([
-    fetch(process.env.FS22_BOT_URL_SERVER_STATS, {
+    fetch(process.env.FARMING_SIMULATOR_BOT_URL_SERVER_STATS, {
       retries,
       retryDelay,
       body: null,
       method: 'GET',
     }),
-    fetch(process.env.FS22_BOT_URL_CAREER_SAVEGAME, {
+    fetch(process.env.FARMING_SIMULATOR_BOT_URL_CAREER_SAVEGAME, {
       retries,
       retryDelay,
       body: null,

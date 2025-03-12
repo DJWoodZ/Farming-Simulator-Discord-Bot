@@ -1,7 +1,9 @@
-FS22 Discord Bot
-================
+Farming Simulator Discord Bot
+=============================
 
-A bot that monitors a [Farming Simulator 22 Dedicated Server](https://www.farming-simulator.com/) and posts status information in a Discord channel.
+A bot that monitors a [Farming Simulator Dedicated Server](https://www.farming-simulator.com/) and posts status information in a Discord channel.
+
+This bot is compatible with Farming Simulator 25 (FS25), 22 (FS22) and possibly other version.
 
 What does this bot do?
 ----------------------
@@ -10,7 +12,7 @@ It will show information such as the server's status, the number of players onli
 
 ### Channel updates
 
-This bot works with a single Farming Simulator 22 Dedicated Server and will post updates like this as the status changes:
+This bot works with a single Farming Simulator Dedicated Server and will post updates like this as the status changes:
 
 **FS22** [BOT] <sub>Today at 10:00</sub>
 <br />
@@ -82,19 +84,19 @@ It would work but you shouldn't do that. It is good practice to create and edit 
 
 ### Which variables must I edit?
 
-As a minimum you will need to specify a `FS22_BOT_DISCORD_TOKEN` value, which you obtain via the [Discord Developer Portal](https://discord.com/developers/). You will also need to verify that the `FS22_BOT_URL_CAREER_SAVEGAME` and `FS22_BOT_URL_SERVER_STATS` values are correct.
+As a minimum you will need to specify a `FARMING_SIMULATOR_BOT_DISCORD_TOKEN` value, which you obtain via the [Discord Developer Portal](https://discord.com/developers/). You will also need to verify that the `FARMING_SIMULATOR_BOT_URL_CAREER_SAVEGAME` and `FARMING_SIMULATOR_BOT_URL_SERVER_STATS` values are correct.
 
 ### Anything else to be aware of?
 
 By default the bot will post to all channels it has access to on all servers it has been added to.
 
-You should use Discord's roles and permissions to control which channels it can post to, but you can also specify the `FS22_BOT_DISCORD_SERVER_NAME` and `FS22_BOT_DISCORD_CHANNEL_NAME` values to further ensure it only posts to your chosen Discord server and/or channel. This is recommended.
+You should use Discord's roles and permissions to control which channels it can post to, but you can also specify the `FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME` and `FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME` values to further ensure it only posts to your chosen Discord server and/or channel. This is recommended.
 
 Be sure to spell the server and channel names exactly as written in Discord.
 
 ### What about purging?
 
-By default purging is disabled. When enabled, it will only purge its own messages and it will only purge from the specified channel on the specified server, both of which must be set using `FS22_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME` and `FS22_BOT_PURGE_DISCORD_CHANNEL_NAME`.
+By default purging is disabled. When enabled, it will only purge its own messages and it will only purge from the specified channel on the specified server, both of which must be set using `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME` and `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_NAME`.
 
 Be sure to spell the server and channel names exactly as written in Discord.
 
@@ -102,24 +104,24 @@ If you do not want the bot to purge its old messages, simply leave these values 
 
 ### Environment Variables
 
-* `FS22_BOT_DB_PATH` (Default: `./db.json`) - The path to the database JSON file (the file will be created if it doesn't exist)
-* `FS22_BOT_DISABLE_CERTIFICATE_VERIFICATION` (Default: `false`) - Whether to disable SSL certificate verification (for HTTPS XML URLs)
-* `FS22_BOT_DISABLE_SAVEGAME_MESSAGES` (Default: `false`) - Whether to disable "Savegame Money" and "Savegame Play Time" messages.
-* `FS22_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES` (Default: `false`) - Whether to disable "The server is unreachable." and "The server has been found." messages.
-* `FS22_BOT_DISCORD_CHANNEL_NAME` (Default: *blank*) - The Discord channel name to post in (leave blank for all channels the bot has access to)
-* `FS22_BOT_DISCORD_SERVER_NAME` (Default: *blank*) - The Discord server name to post in (leave blank for all servers the bot has access to)
-* `FS22_BOT_DISCORD_TOKEN` (Default: `YOUR_DISCORD_TOKEN`) - Your Discord bot token (from the [Discord Developer Portal](https://discord.com/developers/))
-* `FS22_BOT_FETCH_RETRIES` (Default: `5`) - The number of times to retry failed fetches
-* `FS22_BOT_FETCH_RETRY_DELAY_MS` (Default: `2000`) - The delay between fetch retries (in milliseconds)
-* `FS22_BOT_POLL_INTERVAL_MINUTES` (Default: `1`) - How frequently to poll the Dedicated Server (in minutes)
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_AFTER_DAYS` (Default: `7`) - How old messages must be before they are deleted (in days)
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_AFTER_LINES` (Default: *blank*) - The maximum number of messages to keep
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_HOUR` (Default: `2`) - The hour of the day to perform the purge in UTC (e.g. `2` for 2am (UTC))
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_NAME` (Default: *blank*) - The Discord channel name to purge (leave blank to disable purging)
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP` (Default: `false`) - Attempt a purge when the bot first connects
-* `FS22_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME` (Default: *blank*) - The Discord server name with the channel to purge (leave blank to disable purging)
-* `FS22_BOT_URL_CAREER_SAVEGAME` (Default: `http://localhost:8080/feed/dedicated-server-savegame.html`) - The dedicated-server-savegame.html?file=careerSavegame URL including code, e.g. `http://localhost:8080/feed/dedicated-server-savegame.html?code=ABCD1234&file=careerSavegame`
-* `FS22_BOT_URL_SERVER_STATS` (Default: `http://localhost:8080/feed/dedicated-server-stats.xml`) - The dedicated-server-stats.xml URL including code, e.g. `http://localhost:8080/feed/dedicated-server-stats.xml?code=ABCD1234`
+* `FARMING_SIMULATOR_BOT_DB_PATH` (Default: `./db.json`) - The path to the database JSON file (the file will be created if it doesn't exist)
+* `FARMING_SIMULATOR_BOT_DISABLE_CERTIFICATE_VERIFICATION` (Default: `false`) - Whether to disable SSL certificate verification (for HTTPS XML URLs)
+* `FARMING_SIMULATOR_BOT_DISABLE_SAVEGAME_MESSAGES` (Default: `false`) - Whether to disable "Savegame Money" and "Savegame Play Time" messages.
+* `FARMING_SIMULATOR_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES` (Default: `false`) - Whether to disable "The server is unreachable." and "The server has been found." messages.
+* `FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME` (Default: *blank*) - The Discord channel name to post in (leave blank for all channels the bot has access to)
+* `FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME` (Default: *blank*) - The Discord server name to post in (leave blank for all servers the bot has access to)
+* `FARMING_SIMULATOR_BOT_DISCORD_TOKEN` (Default: `YOUR_DISCORD_TOKEN`) - Your Discord bot token (from the [Discord Developer Portal](https://discord.com/developers/))
+* `FARMING_SIMULATOR_BOT_FETCH_RETRIES` (Default: `5`) - The number of times to retry failed fetches
+* `FARMING_SIMULATOR_BOT_FETCH_RETRY_DELAY_MS` (Default: `2000`) - The delay between fetch retries (in milliseconds)
+* `FARMING_SIMULATOR_BOT_POLL_INTERVAL_MINUTES` (Default: `1`) - How frequently to poll the Dedicated Server (in minutes)
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_AFTER_DAYS` (Default: `7`) - How old messages must be before they are deleted (in days)
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_AFTER_LINES` (Default: *blank*) - The maximum number of messages to keep
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_HOUR` (Default: `2`) - The hour of the day to perform the purge in UTC (e.g. `2` for 2am (UTC))
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_NAME` (Default: *blank*) - The Discord channel name to purge (leave blank to disable purging)
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP` (Default: `false`) - Attempt a purge when the bot first connects
+* `FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME` (Default: *blank*) - The Discord server name with the channel to purge (leave blank to disable purging)
+* `FARMING_SIMULATOR_BOT_URL_CAREER_SAVEGAME` (Default: `http://localhost:8080/feed/dedicated-server-savegame.html`) - The dedicated-server-savegame.html?file=careerSavegame URL including code, e.g. `http://localhost:8080/feed/dedicated-server-savegame.html?code=ABCD1234&file=careerSavegame`
+* `FARMING_SIMULATOR_BOT_URL_SERVER_STATS` (Default: `http://localhost:8080/feed/dedicated-server-stats.xml`) - The dedicated-server-stats.xml URL including code, e.g. `http://localhost:8080/feed/dedicated-server-stats.xml?code=ABCD1234`
 
 Installation
 ------------
@@ -131,8 +133,8 @@ You can either run this project directly on a host machine, or you can run it in
 You need [git](https://git-scm.com/) and [Node.js](https://nodejs.org/) to be installed, then you must clone this repository and install the dependencies:
 
 ```
-git clone https://github.com/DJWoodZ/FS22-Discord-Bot.git
-cd FS22-Discord-Bot
+git clone https://github.com/DJWoodZ/Farming-Simulator-Discord-Bot.git
+cd Farming-Simulator-Discord-Bot
 npm install
 cp .env .env.local
 ```
@@ -192,13 +194,13 @@ This project comes pre-configured ready for use with Docker Compose.
 
 The default Docker Compose configuration (`compose.yaml`) will use the `.env.local` file on the host machine.
 
-The `FS22_BOT_DB_PATH` value in `.env.local` will be ignored by the Docker Compose configuration. The default Docker Compose configuration will create and use a database JSON file located on the host machine at: `.\docker-volumes\db\db.json`.
+The `FARMING_SIMULATOR_BOT_DB_PATH` value in `.env.local` will be ignored by the Docker Compose configuration. The default Docker Compose configuration will create and use a database JSON file located on the host machine at: `.\docker-volumes\db\db.json`.
 
 You need [git](https://git-scm.com/), [Docker](https://docs.docker.com/engine/install/) and [Docker Compose](https://docs.docker.com/compose/install/) to be installed and then you must clone this repository:
 
 ```
-git clone https://github.com/DJWoodZ/FS22-Discord-Bot.git
-cd FS22-Discord-Bot
+git clone https://github.com/DJWoodZ/Farming-Simulator-Discord-Bot.git
+cd Farming-Simulator-Discord-Bot
 cp .env .env.local
 ```
 
@@ -238,8 +240,8 @@ For a full list of options see the [`docker compose up`](https://docs.docker.com
 
 For development only.
 
-If you need to interact with the container, you can use this command (assuming the container is named `fs22-discord-bot-server-1`):
+If you need to interact with the container, you can use this command (assuming the container is named `farming-simulator-discord-bot-server-1`):
 
 ```
-docker exec -it fs22-discord-bot-server-1 /bin/sh
+docker exec -it farming-simulator-discord-bot-server-1 /bin/sh
 ```

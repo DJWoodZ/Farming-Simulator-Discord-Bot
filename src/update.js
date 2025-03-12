@@ -1,7 +1,7 @@
 const fs = require('fs');
 require('dotenv-flow').config();
 
-const dbPath = process.env.FS22_BOT_DB_PATH;
+const dbPath = process.env.FARMING_SIMULATOR_BOT_DB_PATH;
 
 const {
   getDataFromAPI,

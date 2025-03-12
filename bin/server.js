@@ -22,9 +22,9 @@ const {
 } = require('../src/utils/utils');
 const { getNextPurge, willPurge, purgeOldMessages } = require('../src/utils/purge');
 
-const dbPath = process.env.FS22_BOT_DB_PATH;
+const dbPath = process.env.FARMING_SIMULATOR_BOT_DB_PATH;
 const pollIntervalMillis = Math.max(
-  parseInt(process.env.FS22_BOT_POLL_INTERVAL_MINUTES, 10) || 1, // integer or 1
+  parseInt(process.env.FARMING_SIMULATOR_BOT_POLL_INTERVAL_MINUTES, 10) || 1, // integer or 1
   1, // minimum of 1
 ) * 60000;
 
@@ -88,13 +88,13 @@ const getUpdateString = (
     string += modString;
   }
 
-  if (process.env.FS22_BOT_DISABLE_SAVEGAME_MESSAGES !== 'true') {
+  if (process.env.FARMING_SIMULATOR_BOT_DISABLE_SAVEGAME_MESSAGES !== 'true') {
     const { money, playTime } = newData.careerSavegame;
     if (previousCareerSavegame.money !== money) {
       let directionEmoji = '';
       let moneyDifferenceSign = '';
       const moneyDifferenceAbsolute = Math.abs(money - previousCareerSavegame.money);
-  
+
       if (money > previousCareerSavegame.money) {
         directionEmoji = ':arrow_up_small:';
         moneyDifferenceSign = '+';
@@ -158,12 +158,12 @@ const sendMessage = (message) => {
   if (message) {
     client.channels.cache.filter((channel) => (
       // if we do not have a server name, or we do and it matches
-      !process.env.FS22_BOT_DISCORD_SERVER_NAME
-        || channel.guild.name === process.env.FS22_BOT_DISCORD_SERVER_NAME
+      !process.env.FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME
+        || channel.guild.name === process.env.FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME
     )
       // and if we do not have a channel name, or we do and it matches
-      && (!process.env.FS22_BOT_DISCORD_CHANNEL_NAME
-          || channel.name === process.env.FS22_BOT_DISCORD_CHANNEL_NAME)
+      && (!process.env.FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME
+          || channel.name === process.env.FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME)
       // channel is a text channel
       && channel.type === ChannelType.GuildText
       // we have permission to view and send
@@ -211,7 +211,7 @@ const update = () => {
         const data = parseData(rawData, previousPlayers, previousServer);
 
         if (previouslyUnreachable) {
-          if (process.env.FS22_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES !== 'true') {
+          if (process.env.FARMING_SIMULATOR_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES !== 'true') {
             sendMessage(':thumbsup: The server has been **found**.');
           }
           db.server.unreachable = false;
@@ -256,7 +256,7 @@ const update = () => {
       console.error(e);
       client.user.setActivity('unknown');
       if (!db.server.unreachable) {
-        if (process.env.FS22_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES !== 'true') {
+        if (process.env.FARMING_SIMULATOR_BOT_DISABLE_UNREACHABLE_FOUND_MESSAGES !== 'true') {
           sendMessage(':man_shrugging: The server is **unreachable**.');
         }
         db.server.unreachable = true;
@@ -269,7 +269,7 @@ const update = () => {
 
 client.on('ready', () => {
   if (willPurge()) {
-    if (process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP === 'true') {
+    if (process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_ON_STARTUP === 'true') {
       attemptPurge();
     } else {
       nextPurge = getNextPurge();
@@ -301,7 +301,7 @@ const initialise = () => {
     fs.writeFileSync(dbPath, JSON.stringify(db, null, 2), 'utf8');
   }
 
-  client.login(process.env.FS22_BOT_DISCORD_TOKEN);
+  client.login(process.env.FARMING_SIMULATOR_BOT_DISCORD_TOKEN);
 };
 
 process.on('beforeExit', (code) => {

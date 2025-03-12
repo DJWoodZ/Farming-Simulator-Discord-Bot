@@ -4,7 +4,7 @@ services:
       context: .
     environment:
       NODE_ENV: production
-      FS22_BOT_DB_PATH: /usr/src/app/db/db.json
+      FARMING_SIMULATOR_BOT_DB_PATH: /usr/src/app/db/db.json
     env_file:
       - ./.env
       - ./.env.local

@@ -1,25 +1,27 @@
 {
-  "name": "@djwoodz/fs22-discord-bot",
+  "name": "@djwoodz/farming-simulator-discord-bot",
   "version": "0.1.0",
   "private": true,
   "description": "",
   "main": "./bin/server.js",
   "bin": {
-    "fs22-discord-bot": "./bin/server.js"
+    "farming-simulator-discord-bot": "./bin/server.js"
   },
   "scripts": {
     "start": "node ./bin/server.js",
     "update": "node ./src/update.js",
-    "pm2:start": "pm2 start ./bin/server.js --name fs22-discord-bot --time",
-    "pm2:stop": "pm2 stop fs22-discord-bot",
+    "pm2:start": "pm2 start ./bin/server.js --name farming-simulator-discord-bot --time",
+    "pm2:stop": "pm2 stop farming-simulator-discord-bot",
     "dev": "nodemon ./bin/server.js -e js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DJWoodZ/FS22-Discord-Bot.git"
+    "url": "git+https://github.com/DJWoodZ/Farming-Simulator-Discord-Bot.git"
   },
   "keywords": [
+    "Farming Simulator 25",
+    "FS25",
     "Farming Simulator 22",
     "FS22",
     "Discord",
@@ -28,9 +30,9 @@
   "author": "DJ WoodZ",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/DJWoodZ/FS22-Discord-Bot/issues"
+    "url": "https://github.com/DJWoodZ/Farming-Simulator-Discord-Bot/issues"
   },
-  "homepage": "https://github.com/DJWoodZ/FS22-Discord-Bot#readme",
+  "homepage": "https://github.com/DJWoodZ/Farming-Simulator-Discord-Bot#readme",
   "dependencies": {
     "deepmerge": "^4.3.1",
     "discord.js": "^14.14.1",

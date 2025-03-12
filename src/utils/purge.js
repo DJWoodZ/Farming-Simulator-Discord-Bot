@@ -8,12 +8,12 @@ const fetchMessages = (channel, lastKey) => channel.messages.fetch({
 });
 
 const getPurgeTime = () => (parseInt(
-  process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_AFTER_DAYS,
+  process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_AFTER_DAYS,
   10,
 ) || -1) * 24 * 60 * 60 * 1000;
 
 const getPurgeLines = () => parseInt(
-  process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_AFTER_LINES,
+  process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_AFTER_LINES,
   10,
 ) || -1;
 
@@ -23,22 +23,22 @@ const purge = {
     const timeToday = now % (24 * 60 * 60 * 1000);
     const upcomingMidnight = now - timeToday + (24 * 60 * 60 * 1000);
     const purgeHour = Math.max(parseInt(process.env
-      .FS22_BOT_PURGE_DISCORD_CHANNEL_HOUR, 10), 0) || 2;
+      .FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_HOUR, 10), 0) || 2;
     return upcomingMidnight + (purgeHour * 60 * 60 * 1000);
   },
 
   willPurge: () => (process.env
-    .FS22_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME // if we have a server to purge
+    .FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME // if we have a server to purge
       // and we have a channel to purge
-      && process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_NAME
+      && process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_NAME
       // and we don't have a posting server name, or we do and it matches the purge server name
-      && (!process.env.FS22_BOT_DISCORD_SERVER_NAME
-          || process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME
-          === process.env.FS22_BOT_DISCORD_SERVER_NAME)
+      && (!process.env.FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME
+          || process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME
+          === process.env.FARMING_SIMULATOR_BOT_DISCORD_SERVER_NAME)
       // and we don't have a posting channel name, or we do and it matches the purge channel name
-      && (!process.env.FS22_BOT_DISCORD_CHANNEL_NAME
-        || process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_NAME
-        === process.env.FS22_BOT_DISCORD_CHANNEL_NAME))
+      && (!process.env.FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME
+        || process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_NAME
+        === process.env.FARMING_SIMULATOR_BOT_DISCORD_CHANNEL_NAME))
       // and we have a time or lines to purge
       && (getPurgeTime() >= 0 || getPurgeLines() >= 0),
 
@@ -49,9 +49,9 @@ const purge = {
 
     const channels = client.channels.cache.filter((channel) => (
     // if the server name matches
-      channel.guild.name === process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME
+      channel.guild.name === process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_SERVER_NAME
         // and the channel name matches
-        && channel.name === process.env.FS22_BOT_PURGE_DISCORD_CHANNEL_NAME)
+        && channel.name === process.env.FARMING_SIMULATOR_BOT_PURGE_DISCORD_CHANNEL_NAME)
         // channel is a text channel
         && channel.type === ChannelType.GuildText
         // we have permission to view
